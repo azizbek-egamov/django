@@ -45,8 +45,14 @@ people = [
 
 
 def homePage(request):
-    user = request.user
-    return render(request, "index.html", {"user": user})
+    u = request.user
+    print(u)
+    if str(u) == "AnonymousUser":
+        return render(request, "index.html", {"user": 'Nomalum foydalanuvchi'})
+    elif str(u) == "admin":
+        return redirect("/admin")
+    else:
+        return render(request, "index.html", {"user": u})
 
 
 def aboutPage(request):
